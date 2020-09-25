@@ -144,7 +144,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($dataTypeContent->{$row->field} as $item)
+                                            @foreach (json_decode($dataTypeContent->{$row->field} ?? []) as $item)
                                                 <tr>
                                                     <td>{{ $item->type }}</td>
                                                     <td>{{ $item->material }}</td>
