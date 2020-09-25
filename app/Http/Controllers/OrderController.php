@@ -141,9 +141,15 @@ class OrderController extends VoyagerBaseController
 
     public function update(Request $request, $id)
     {
+        $total = 0;
+        foreach ($request->detail as $detail) {
+            $total += $detail['quantity'];
+        }
+
         $request->merge([
             'order_detail' => json_encode($request->order_detail),
             'detail' => json_encode($request->detail),
+            'total'         => $total
         ]);
 
         return parent::update($request, $id);
@@ -207,5 +213,22 @@ class OrderController extends VoyagerBaseController
         }
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'screenPrintings', 'buttons', 'kurRopes', 'stoppers', 'zippers', 'purings', 'jacketTypes'));
+    }
+
+    public function store(Request $request)
+    {
+        $total = 0;
+        foreach ($request->detail as $detail) {
+            $total += $detail['quantity'];
+        }
+
+        $request->merge([
+            'detail'        => json_encode($request->detail),
+            'order_detail'  => json_encode($request->order_detail),
+            'order_time'    => date("Y-m-d H:i:s", strtotime($request->order_time)),
+            'total'         => $total
+        ]);
+
+        return parent::store($request);
     }
 }

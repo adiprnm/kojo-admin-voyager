@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="col-md-2" style="margin-bottom  : 10px">
                                                     <div class="form-group">
-                                                        <label for="Menggunakan Perepet">Menggunakan Perepet</label>
+                                                        <label for="Menggunakan Perepet">Perepet</label>
                                                         <select name="order_detail[use_perepet]" class="form-control">
                                                             <option value="0" {{ $edit && $dataTypeContent->{$row->field}->use_perepet == 0 ? 'selected' : '' }} >Tidak</option>
                                                             <option value="1" {{ $edit && $dataTypeContent->{$row->field}->use_perepet == 1 ? 'selected' : '' }} >Ya</option>
@@ -167,22 +167,30 @@
                                                 </div>
                                             </div>
                                         @elseif($row->field == 'detail')
-                                            @if ($edit)
-                                                @foreach ($dataTypeContent->{$row->field} as $k => $item)
+                                            @php
+                                                $detail = new stdClass();
+                                                $detail->size = '';
+                                                $detail->type = '';
+                                                $detail->quantity = '';
+
+                                                $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field} ?? [$detail];
+                                            @endphp
+                                            @foreach ($dataTypeContent->{$row->field} as $k => $item)
+                                                <div class="detail">
                                                     <div class="row">
                                                         <div class="col-md-2" style="margin-bottom: 10px">
                                                             <div class="form-group">
                                                                 <label for="Ukuran">Ukuran</label>
-                                                                <select class="form-control select2" name="detail[{{ $k }}][size]">
-                                                                    <option value="XS" {{ $edit && $item->size == 'XS' ? 'selected' : '' }}>XS</option>
-                                                                    <option value="S" {{ $edit && $item->size == 'S' ? 'selected' : '' }}>S</option>
-                                                                    <option value="M" {{ $edit && $item->size == 'M' ? 'selected' : '' }}>M</option>
-                                                                    <option value="L" {{ $edit && $item->size == 'L' ? 'selected' : '' }}>L</option>
-                                                                    <option value="XL" {{ $edit && $item->size == 'XL' ? 'selected' : '' }}>XL</option>
-                                                                    <option value="2XL" {{ $edit && $item->size == '2XL' ? 'selected' : '' }}>2XL</option>
-                                                                    <option value="3XL" {{ $edit && $item->size == '3XL' ? 'selected' : '' }}>3XL</option>
-                                                                    <option value="4XL" {{ $edit && $item->size == '4XL' ? 'selected' : '' }}>4XL</option>
-                                                                    <option value="5XL" {{ $edit && $item->size == '5XL' ? 'selected' : '' }}>5XL</option>
+                                                                <select class="form-control" name="detail[{{ $k }}][size]">
+                                                                    <option value="XS" {{ $item->size == 'XS' ? 'selected' : '' }}>XS</option>
+                                                                    <option value="S" {{ $item->size == 'S' ? 'selected' : '' }}>S</option>
+                                                                    <option value="M" {{ $item->size == 'M' ? 'selected' : '' }}>M</option>
+                                                                    <option value="L" {{ $item->size == 'L' ? 'selected' : '' }}>L</option>
+                                                                    <option value="XL" {{ $item->size == 'XL' ? 'selected' : '' }}>XL</option>
+                                                                    <option value="2XL" {{ $item->size == '2XL' ? 'selected' : '' }}>2XL</option>
+                                                                    <option value="3XL" {{ $item->size == '3XL' ? 'selected' : '' }}>3XL</option>
+                                                                    <option value="4XL" {{ $item->size == '4XL' ? 'selected' : '' }}>4XL</option>
+                                                                    <option value="5XL" {{ $item->size == '5XL' ? 'selected' : '' }}>5XL</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -190,20 +198,31 @@
                                                             <div class="form-group">
                                                                 <label for="Jenis Lengan">Jenis Lengan</label>
                                                                 <select class="form-control" name="detail[{{ $k }}][type]">
-                                                                    <option value="Lengan Panjang" {{ $edit && $item->type == 'Lengan Panjang' ? 'selected' : '' }}>Lengan Panjang</option>
-                                                                    <option value="Lengan Pendek" {{ $edit && $item->type == 'Lengan Pendek' ? 'selected' : '' }}>Lengan Pendek</option>
+                                                                    <option value="Lengan Panjang" {{ $item->type == 'Lengan Panjang' ? 'selected' : '' }}>Lengan Panjang</option>
+                                                                    <option value="Lengan Pendek" {{ $item->type == 'Lengan Pendek' ? 'selected' : '' }}>Lengan Pendek</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2" style="margin-bottom: 10px">
                                                             <div class="form-group">
                                                                 <label for="Jumlah">Jumlah</label>
-                                                                <input type="number" class="form-control" name="detail[{{ $k }}][quantity]" value="{{ $edit && $item->quantity }}">
+                                                                <input type="number" class="form-control" name="detail[{{ $k }}][quantity]" value="{{ $item->quantity }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-bottom: 10px">
+                                                            <div class="form-group">
+                                                                <label for="Aksi">Aksi</label>
+                                                                <button class="btn btn-danger delete-detail" style="margin: 0">- Hapus</button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                            @endif
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button class="btn btn-success add-detail">+ Tambah</button>
+                                                </div>
+                                            </div>
                                         @else
                                             {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                                         @endif
@@ -414,6 +433,60 @@
                 orderDetailRoute = orderDetailRoute.replace(':id', orderId)
 
                 getOrder(orderDetailRoute)
+            })
+
+            $(document).on('click', 'button.add-detail', function(event) {
+                event.preventDefault();
+                
+                const length = $('div.detail div.row').length
+
+                $('div.detail').last().append(`
+                    <div class="row">
+                        <div class="col-md-2" style="margin-bottom: 10px">
+                            <div class="form-group">
+                                <label for="Ukuran">Ukuran</label>
+                                <select class="form-control" name="detail[${length}][size]">
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="2XL">2XL</option>
+                                    <option value="3XL">3XL</option>
+                                    <option value="4XL">4XL</option>
+                                    <option value="5XL">5XL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-bottom: 10px">
+                            <div class="form-group">
+                                <label for="Jenis Lengan">Jenis Lengan</label>
+                                <select class="form-control" name="detail[${length}][type]">
+                                    <option value="Lengan Panjang">Lengan Panjang</option>
+                                    <option value="Lengan Pendek">Lengan Pendek</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-bottom: 10px">
+                            <div class="form-group">
+                                <label for="Jumlah">Jumlah</label>
+                                <input type="number" class="form-control" name="detail[${length}][quantity]">
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="margin-bottom: 10px">
+                            <div class="form-group">
+                                <label for="Aksi">Aksi</label>
+                                <button class="btn btn-danger delete-detail" style="margin: 0">- Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                `)
+            })
+
+            $(document).on('click', 'button.delete-detail', function(event) {
+                event.preventDefault();
+
+                $(this).parent().parent().parent().remove()
             })
         });
     </script>
