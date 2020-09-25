@@ -13,14 +13,16 @@ abstract class DisbursementHelper
      * @param string $endDate
      * @return void
      */
-    public static function generateCashDisbursementCode(string $disbursementFor, string $orderRef, string $endDate = NULL)
+    public static function generateCashDisbursementCode(string $disbursementFor, string $endDate = NULL)
     {
         $time = strtotime($endDate ?? "now");
 
         $startDate = date("Y-m-d 00:00:00", $time);
         $endDate = date("Y-m-d 23:59:59", $time);
 
-        $cashDisbursement = CashDisbursement::where('code', 'LIKE', "%$disbursementFor-$orderRef%")
+        $date = date("dmy");
+
+        $cashDisbursement = CashDisbursement::where('code', 'LIKE', "%$disbursementFor-$date%")
             ->whereBetween('date', [$startDate, $endDate])
             ->get();
 
