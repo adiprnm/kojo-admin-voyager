@@ -16,6 +16,16 @@ if ( !function_exists('generateInvoiceCode') ) {
     }
 }
 
+if ( !function_exists('generateOrderCode') ) {
+    function generateOrderCode()
+    {
+        $md5Value = md5(microtime(true));
+
+        // ORDER-2807204DJFNCLFE
+        return 'ORDER-' . date("dmy") . strtoupper(substr($md5Value, 0, 8));
+    }
+}
+
 if ( !function_exists('formatDate') ) {
     function formatDate(string $date = NULL): string
     {

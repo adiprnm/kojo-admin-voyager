@@ -311,71 +311,6 @@
           };
         }
 
-        function getOrder(endpoint) {
-            $.get(endpoint, function(data) {
-                $("input[name='name']").val(data.name)
-                $("input[name='institution']").val(data.institution)
-                $("input[name='address']").val(data.address)
-                $("input[name='phone_number']").val(data.phone_number)
-                
-                if (data.order_status.toLowerCase() == 'full_order') {
-                    $("input[name='order_status']").val('Full Order')
-                } else if (data.order_status.toLowerCase() == 'makloon') {
-                    $("input[name='order_status']").val('Makloon')
-                } else {
-                    $("input[name='order_status']").val(data.order_status)
-                }
-
-                $("input[name='enter_date']").val(data.order_time)
-                $("input[name='exit_date']").val(data.completed_time)
-
-                $('.order-detail').empty()
-
-                for (let [index, item] of data.detail.entries()) {
-                    $('.order-detail').append(`
-                        <div class='row'>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Nama Barang">Nama Barang</label>
-                                    <input class='form-control' name="detail[${index}][type]" value='${data.type}'">
-                                </div>
-                            </div>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Bahan">Bahan</label>
-                                    <input class='form-control' name="detail[${index}][material]" value='${data.material}'">
-                                </div>
-                            </div>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Jenis Lengan">Jenis Lengan</label>
-                                    <input class='form-control' name="detail[${index}][sleeve]" value='${item.type}'">
-                                </div>
-                            </div>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Ukuran">Ukuran</label>
-                                    <input class='form-control' name="detail[${index}][size]" value='${item.size}'">
-                                </div>
-                            </div>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Jumlah">Jumlah</label>
-                                    <input class='form-control' name="detail[${index}][quantity]" value='${item.quantity}'">
-                                </div>
-                            </div>
-                            <div class='col-md-2' style='margin-bottom: 10px'>
-                                <div class='form-group'>
-                                    <label for="Harga">Harga</label>
-                                    <input class='form-control' name="detail[${index}][price]">
-                                </div>
-                            </div>
-                        </div>
-                    `)
-                }
-            })
-        }
-
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
 
@@ -425,15 +360,6 @@
             });
             $('[data-toggle="tooltip"]').tooltip();
 
-            var orderDetailRoute = {!! json_encode(route('voyager.orders.show.json', ':id')) !!}
-
-            $('select.select2-ajax').eq(0).on('change', function() {
-                var orderId = $(this).val()
-                var orderDetailRoute = {!! json_encode(route('voyager.orders.show.json', ':id')) !!}
-                orderDetailRoute = orderDetailRoute.replace(':id', orderId)
-
-                getOrder(orderDetailRoute)
-            })
 
             $(document).on('click', 'button.add-detail', function(event) {
                 event.preventDefault();

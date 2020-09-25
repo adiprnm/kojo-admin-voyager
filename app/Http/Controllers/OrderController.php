@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\OrderHelper;
 use App\Models\ClothingButton;
 use App\Models\ClothingJacketType;
 use App\Models\ClothingKurRope;
@@ -222,7 +223,13 @@ class OrderController extends VoyagerBaseController
             $total += $detail['quantity'];
         }
 
+        $type = ClothingType::where('code', $request->type)->first()->name;
+        $material = ClothingMaterial::where('code', $request->material)->first()->name;
+
         $request->merge([
+            'order_ref'     => OrderHelper::generateOrderRef(),
+            'order_code'    => generateOrderCode(),
+            'order_name'    => "$type $material - {$request->name} - {$request->phone_number}",
             'detail'        => json_encode($request->detail),
             'order_detail'  => json_encode($request->order_detail),
             'order_time'    => date("Y-m-d H:i:s", strtotime($request->order_time)),
