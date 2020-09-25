@@ -140,32 +140,27 @@
                                         <tr>
                                             <td>Jumlah Titik Bordir</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->embroidery_point }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jumlah Titik Bordir</td>
-                                            <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->embroidery_point }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->embroidery_point ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Catatan Bordir</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->embroidery_notes }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->embroidery_notes ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Jenis Sablon</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->screen_printing }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->screen_printing ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Catatan Sablon</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->screen_printing_notes }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->screen_printing_notes ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Kancing</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->button }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->button ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Menggunakan Perepet</td>
@@ -175,22 +170,22 @@
                                         <tr>
                                             <td>Stoper</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->stopper }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->stopper ?? '-'}}</td>
                                         </tr>
                                         <tr>
                                             <td>Tali Kur</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->kur_rope }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->kur_rope ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Resleting</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->zipper }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->zipper ?? '-' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Puring</td>
                                             <td>:</td>
-                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->puring }}</td>
+                                            <td>&nbsp;{{ $dataTypeContent->{$row->field}->puring ?? '-' }}</td>
                                         </tr>
                                     </table>
                                 @elseif($row->field == 'detail')
