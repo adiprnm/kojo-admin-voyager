@@ -20,4 +20,14 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    $namespacePrefix = "App\\Http\\Controllers\\";
+
+    Route::group(['prefix' => 'orders'], function() use ($namespacePrefix) {
+        Route::get('/{id}/json', $namespacePrefix . 'OrderController@retrieve')->name('voyager.orders.show.json');
+    });
+
+    Route::group(['prefix' => 'invoices'], function() use ($namespacePrefix) {
+        Route::get('/{id}/download', $namespacePrefix . 'InvoiceController@download')->name('voyager.invoices.download');
+    });
 });
