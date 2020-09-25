@@ -9,6 +9,8 @@ class CashDisbursement extends Model
 {
     use SoftDeletes;
 
+    public $additional_attributes = ['request_id', 'code'];
+
     /**
      * The attributes that are mass assignable.
      *
