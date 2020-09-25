@@ -53,4 +53,28 @@ abstract class RequestHelper
 
         return $expenditureRequestCode;
     }
+
+    /**
+     * Generate payroll request code
+     *
+     * @return string
+     */
+    public static function generatePayrollRequestCode(string $endDate = NULL): string
+    {
+        $time = strtotime($endDate ?? "now");
+
+        $startDate = date("Y-m-d 00:00:00", $time);
+        $endDate = date("Y-m-d 23:59:59", $time);
+
+        $requests = Request::where('category', Request::CATEGORY_PAYROLL)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
+
+        $totalRequest = count($requests);
+        $currentRequest = sprintf("%02d", $totalRequest + 1);
+
+        $expenditureRequestCode = sprintf("PAY-%s%s%s%s", $currentRequest, date("d", $time), date("m", $time), date('y', $time));
+
+        return $expenditureRequestCode;
+    }
 }
