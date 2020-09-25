@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Model\Request;
+use App\Models\Request;
 
 abstract class RequestHelper
 {

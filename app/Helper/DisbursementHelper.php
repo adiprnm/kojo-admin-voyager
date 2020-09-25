@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Model\CashDisbursement;
+use App\Models\CashDisbursement;
 
 abstract class DisbursementHelper
 {

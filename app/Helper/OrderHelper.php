@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Model\Order;
+use App\Models\Order;
 
 abstract class OrderHelper
 {

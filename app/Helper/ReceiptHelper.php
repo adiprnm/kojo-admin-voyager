@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App\Model\CashReceipt;
+use App\Models\CashReceipt;
 
 abstract class ReceiptHelper
 {
