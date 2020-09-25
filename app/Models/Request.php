@@ -9,6 +9,8 @@ class Request extends Model
 {
     use SoftDeletes;
 
+    public $additional_attributes = ['order_id', 'disbursement_id', 'total_price'];
+
     /**
      * Expenditure request category constant
      */
