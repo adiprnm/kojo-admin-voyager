@@ -20,7 +20,9 @@ abstract class DisbursementHelper
         $startDate = date("Y-m-d 00:00:00", $time);
         $endDate = date("Y-m-d 23:59:59", $time);
 
-        $cashDisbursement = CashDisbursement::whereBetween('date', [$startDate, $endDate])->get();
+        $cashDisbursement = CashDisbursement::where('code', 'LIKE', "%$disbursementFor%")
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
 
         $total = count($cashDisbursement);
         $current = sprintf("%02d", $total + 1);
