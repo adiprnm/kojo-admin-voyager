@@ -233,7 +233,8 @@ class OrderController extends VoyagerBaseController
             'detail'        => json_encode($request->detail),
             'order_detail'  => json_encode($request->order_detail),
             'order_time'    => date("Y-m-d H:i:s", strtotime($request->order_time)),
-            'total'         => $total
+            'total'         => $total,
+            'address'       => "{$request->address_street} Kelurahan {$request->address_village} Kecamatan {$request->address_kecamatan}, {$request->address_city} {$request->address_postal_code}"
         ]);
 
         return parent::store($request);
