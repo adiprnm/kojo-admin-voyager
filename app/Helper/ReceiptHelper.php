@@ -26,6 +26,12 @@ abstract class ReceiptHelper
 
         $current = sprintf("%02d", count($cashReceipt) + 1);
 
+        if ($type == 'ON_HAND') {
+            $type = 'CASH';
+        } else {
+            $type = 'BANK';
+        }
+
         $cashReceiptOnBankCode = sprintf("REC-%s-%s-%s%s",
                                          $receiptFor,
                                          $type, 
