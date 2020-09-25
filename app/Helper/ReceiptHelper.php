@@ -20,18 +20,9 @@ abstract class ReceiptHelper
 
         $type = strtoupper($type);
 
-        switch ($type) {
-            case 'BANK':
-                $cashReceipt = CashReceipt::where('type', CashReceipt::TYPE_ON_BANK)
-                    ->whereBetween('date', [$startDate, $endDate])
-                    ->get();
-                break;
-            case 'CASH':
-                $cashReceipt = CashReceipt::where('type', CashReceipt::TYPE_ON_HAND)
-                    ->whereBetween('date', [$startDate, $endDate])
-                    ->get();
-                break;
-        }
+        $cashReceipt = CashReceipt::where('type', $type)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
 
         $current = sprintf("%02d", count($cashReceipt) + 1);
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CashReceipt extends Model
 {
+    public $additional_attributes = ['order_id', 'code'];
+
     /**
      * On hand type constant
      */
