@@ -94,6 +94,7 @@
                                                     <div class="form-group">
                                                         <label for="Jenis Sablon">Jenis Sablon</label>
                                                         <select name="order_detail[screen_printing]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Sablon</option>
                                                             @foreach ($screenPrintings as $screenPrinting)
                                                                 <option value="{{ $screenPrinting->code }}" {{ $edit && $screenPrinting->code == $dataTypeContent->{$row->field}->screen_printing ? 'selected' : '' }} >{{ $screenPrinting->name }}</option>
                                                             @endforeach
@@ -110,6 +111,7 @@
                                                     <div class="form-group">
                                                         <label for="Kancing">Kancing</label>
                                                         <select name="order_detail[button]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Kancing</option>
                                                             @foreach ($buttons as $button)
                                                                 <option value="{{ $button->code }}" {{ $edit && $button->code == $dataTypeContent->{$row->field}->button ? 'selected' : '' }} >{{ $button->name }}</option>
                                                             @endforeach
@@ -129,6 +131,7 @@
                                                     <div class="form-group">
                                                         <label for="Tali Kur">Tali Kur</label>
                                                         <select name="order_detail[kur_rope]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Tali Kur</option>
                                                             @foreach ($kurRopes as $kurRope)
                                                                 <option value="{{ $kurRope->code }}" {{ $edit && $kurRope->code == $dataTypeContent->{$row->field}->kur_rope ? 'selected' : '' }} >{{ $kurRope->name }}</option>
                                                             @endforeach
@@ -139,6 +142,7 @@
                                                     <div class="form-group">
                                                         <label for="Stoper">Stoper</label>
                                                         <select name="order_detail[stopper]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Stoper</option>
                                                             @foreach ($stoppers as $stopper)
                                                                 <option value="{{ $stopper->code }}" {{ $edit && $stopper->code == $dataTypeContent->{$row->field}->stopper ? 'selected' : '' }} >{{ $stopper->name }}</option>
                                                             @endforeach
@@ -149,6 +153,7 @@
                                                     <div class="form-group">
                                                         <label for="Resleting">Resleting</label>
                                                         <select name="order_detail[zipper]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Resleting</option>
                                                             @foreach ($zippers as $zipper)
                                                                 <option value="{{ $zipper->code }}" {{ $edit && $zipper->code == $dataTypeContent->{$row->field}->zipper ? 'selected' : '' }} >{{ $zipper->name }}</option>
                                                             @endforeach
@@ -159,6 +164,7 @@
                                                     <div class="form-group">
                                                         <label for="Puring">Puring</label>
                                                         <select name="order_detail[puring]" class="form-control select2">
+                                                            <option value="" selected>Tanpa Puring</option>
                                                             @foreach ($purings as $puring)
                                                                 <option value="{{ $puring->code }}" {{ $edit && $puring->code == $dataTypeContent->{$row->field}->puring ? 'selected' : '' }} >{{ $puring->name }}</option>
                                                             @endforeach
