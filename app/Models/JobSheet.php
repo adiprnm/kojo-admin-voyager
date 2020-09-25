@@ -9,6 +9,8 @@ class JobSheet extends Model
 {
     use SoftDeletes;
     
+    public $additional_attributes = ['code'];
+
     /**
      * The attributes that are mass assignable.
      *
