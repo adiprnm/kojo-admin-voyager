@@ -13,6 +13,8 @@ class RequestRealization extends Model
     const CATEGORY_EXPENDITURE = 'EXPENDITURE';
     const CATEGORY_PAYROLL = 'PAYROLL';
 
+    public $additional_attributes = ['order_id', 'journal_id', 'total_price'];
+
     /**
      * The attributes that are mass assignable.
      *
