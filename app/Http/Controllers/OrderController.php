@@ -56,7 +56,10 @@ class OrderController extends VoyagerBaseController
         $orderDetail->stopper = ClothingStopper::where('code', $orderDetail->stopper)->first()->name ?? '-';
         $orderDetail->zipper = ClothingZipper::where('code', $orderDetail->zipper)->first()->name ?? '-';
         $orderDetail->puring = ClothingPuring::where('code', $orderDetail->puring)->first()->name ?? '-';
-        $orderDetail->jacket_type = ClothingJacketType::where('code', $orderDetail->jacket_type)->first()->name ?? '-';
+        
+        if (isset($orderDetail->jacket_type)) {
+            $orderDetail->jacket_type = ClothingJacketType::where('code', $orderDetail->jacket_type)->first()->name ?? '-';
+        }
 
         $dataTypeContent->order_detail = $orderDetail;
         $dataTypeContent->detail = json_decode($dataTypeContent->detail);

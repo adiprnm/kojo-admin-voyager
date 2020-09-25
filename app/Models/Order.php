@@ -10,6 +10,8 @@ class Order extends Model
 {
     use SoftDeletes;
 
+    public $additional_attributes = ['order_ref', 'order_code', 'order_name', 'address', 'order_status', 'type', 'material', 'total'];
+
     /**
      * NEW status constant
      */
