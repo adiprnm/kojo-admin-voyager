@@ -73,7 +73,32 @@ abstract class RequestHelper
         $totalRequest = count($requests);
         $currentRequest = sprintf("%02d", $totalRequest + 1);
 
-        $expenditureRequestCode = sprintf("PAY-%s%s%s%s", $currentRequest, date("d", $time), date("m", $time), date('y', $time));
+        $payrollRequestCode = sprintf("PAY-%s%s%s%s", $currentRequest, date("d", $time), date("m", $time), date('y', $time));
+
+        return $payrollRequestCode;
+    }
+
+
+    /**
+     * Generate non production request code
+     *
+     * @return string
+     */
+    public static function generateNonProductionRequestCode(string $endDate = NULL): string
+    {
+        $time = strtotime($endDate ?? "now");
+
+        $startDate = date("Y-m-d 00:00:00", $time);
+        $endDate = date("Y-m-d 23:59:59", $time);
+
+        $requests = Request::where('category', Request::CATEGORY_NON_PRODUCTION)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
+
+        $totalRequest = count($requests);
+        $currentRequest = sprintf("%02d", $totalRequest + 1);
+
+        $expenditureRequestCode = sprintf("NP-%s%s%s%s", $currentRequest, date("d", $time), date("m", $time), date('y', $time));
 
         return $expenditureRequestCode;
     }

@@ -27,6 +27,11 @@ class Request extends Model
     const CATEGORY_PAYROLL = 'PAYROLL';
 
     /**
+     * Non-production request category constant
+     */
+    const CATEGORY_NON_PRODUCTION = 'NON_PRODUCTION';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

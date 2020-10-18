@@ -21,6 +21,9 @@ class RequestController extends VoyagerBaseController
             case ModelsRequest::CATEGORY_PAYROLL:
                 $code = RequestHelper::generatePayrollRequestCode();
                 break;
+            case ModelsRequest::CATEGORY_NON_PRODUCTION:
+                $code = RequestHelper::generateNonProductionRequestCode();
+                break;
             default:
                 $code = NULL;      
         } 
