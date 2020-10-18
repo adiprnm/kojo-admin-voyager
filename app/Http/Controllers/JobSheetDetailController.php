@@ -11,7 +11,8 @@ class JobSheetDetailController extends VoyagerBaseController
     public function store(Request $request)
     {
         Order::where('id', $request->order_id)->update([
-            'status' => $request->status
+            'status'    => $request->status,
+            'progress'  => $request->percentage ?? 0
         ]);
 
         return parent::store($request);
@@ -20,7 +21,8 @@ class JobSheetDetailController extends VoyagerBaseController
     public function update(Request $request, $id)
     {
         Order::where('id', $request->order_id)->update([
-            'status' => $request->status
+            'status'    => $request->status,
+            'progress'  => $request->percentage ?? 0
         ]);
 
         return parent::update($request, $id);
