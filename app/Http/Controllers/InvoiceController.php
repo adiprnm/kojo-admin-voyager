@@ -29,6 +29,7 @@ class InvoiceController extends VoyagerBaseController
             'total'         => $total,
             'price'         => $price,
             'total_price'   => $price + $request->delivery_fee,
+            'total_dp'      => $request->total_dp ?? ($price + $request->delivery_fee) * 0.5,
             'detail'        => json_encode($request->detail)
         ];
 
@@ -51,6 +52,7 @@ class InvoiceController extends VoyagerBaseController
             'total'         => $total,
             'price'         => $price,
             'total_price'   => $price + $request->delivery_fee,
+            'total_dp'      => $request->total_dp ?? ($price + $request->delivery_fee) * 0.5,
             'detail'        => json_encode($request->detail)
         ];
 

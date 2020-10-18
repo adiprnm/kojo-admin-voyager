@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use SoftDeletes;
     
-    public $additional_attributes = ['order_id', 'code', 'order_code', 'total', 'price', 'total_price'];
+    public $additional_attributes = ['order_id', 'code', 'order_code', 'total', 'price', 'total_price', 'total_dp'];
 
     /**
      * The attributes that are mass assignable.
