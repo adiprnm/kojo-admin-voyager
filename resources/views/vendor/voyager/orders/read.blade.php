@@ -206,7 +206,9 @@
                                         </tbody>
                                     </table>
                                 @elseif($row->field == 'design_url')
-                                    <img src="{{ $dataTypeContent->{$row->field} }}" alt="Desain" />
+                                    <a href="{{ $dataTypeContent->{$row->field} }}" target="_blank">
+                                        <button class="btn btn-primary">Lihat Desain</button>
+                                    </a>
                                 @else
                                     @include('voyager::multilingual.input-hidden-bread-read')
                                     <p>{{ $dataTypeContent->{$row->field} }}</p>
