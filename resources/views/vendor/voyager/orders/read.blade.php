@@ -205,6 +205,8 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                @elseif($row->field == 'design_url')
+                                    <img src="{{ $dataTypeContent->{$row->field} }}" alt="Desain" />
                                 @else
                                     @include('voyager::multilingual.input-hidden-bread-read')
                                     <p>{{ $dataTypeContent->{$row->field} }}</p>
